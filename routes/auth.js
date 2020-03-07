@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var authPassport = require('../auth/google');
+var authPassport = require('../auth/passport');
 
 router.get('/login', function(req, res, next) {
   res.render('auth/login', {title: 'Please Sign In with:', email:"", password: ""});

@@ -1,0 +1,43 @@
+<%- include('./layouts/header.ejs') %>
+<%- include('./layouts/menu.ejs') %>
+
+<h1><%= title %></h1>
+
+<% if (messages.error) { %>
+<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+<p style="color:green"><%- messages.success %></p>
+<% } %>
+<a href='/' class="btn btn-link mr-2"> Back</a>
+<form action="/edit/<%= id %>" method="POST" name="form1">
+    <div class="form-group">
+        <label >Title</label>
+        <input type="text" name="name" id="name" value="<%= name %>" 
+            class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    
+    <div class="form-group">
+        <label >Description</label>
+        <textarea class="form-control" name="description" rows="3"><%= description %></textarea>
+    </div>
+    <div class="form-group">
+        <label>Field 1</label>
+        <input type="text" name="field1" id="field1" value="<%= field1 %>" class="form-control"
+            placeholder="Enter Field1">
+    </div>
+    <div class="form-group">
+        <label>Field 2</label>
+        <input type="text" name="field2" id="field2" value="<%= field2 %>" class="form-control"
+            placeholder="Enter Field2">
+    </div>
+    <div class="form-group">
+        <label>Field 3</label>
+        <input type="text" name="field3" id="field3" value="<%= field3 %>" class="form-control"
+            placeholder="Enter Field3">
+    </div>
+    <input type="hidden" name="_method" value="PUT" />
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+<%- include('./layouts/footer.ejs') %>

@@ -1,0 +1,43 @@
+<%- include('./layouts/header.ejs') %>
+<%- include('./layouts/menu.ejs') %>
+
+<h1><%= title %></h1>
+
+<% if (messages.error) { %>
+<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+<p style="color:green"><%- messages.success %></p>
+<% } %>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr >
+      <th>Title</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (data) { %>
+      <% data.forEach(function(item){ %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td width="250px">
+          <a href='/show/<%= item.id %>' class="btn btn-primary mr-2">View</a>
+          <a href='/edit/<%= item.id %>' class="btn btn-success mr-2">Edit</a>
+          <form method="post" action="/delete/<%= item.id %>" class="d-inline-block">
+            <input type="submit" name="delete" value='Delete' class="btn btn-danger"
+              onClick="return confirm('Are you sure you want to delete?')" />
+            <input type="hidden" name="_method" value="DELETE" />
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    <% } %>
+  </tbody>
+</table>
+
+<%- include('./layouts/footer.ejs') %>
